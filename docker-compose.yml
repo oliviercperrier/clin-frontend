@@ -2,7 +2,9 @@ version: '3.3'
 services:
 
   frontend:
-    image: chusj/clin-frontend:1.4.16
+    image: chusj/clin-frontend:1.5.0
+    environment:
+      DOMAIN: "dev.chusj-clin-dev.org"
     deploy:
       replicas: 2
       placement:
@@ -16,7 +18,6 @@ services:
           memory: 512M
     networks:
       - proxy
-    command: nginx -g 'daemon off;'
 
 networks:
   proxy:
