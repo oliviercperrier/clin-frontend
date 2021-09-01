@@ -1,12 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import {
   Card, Table, Button, Dropdown, Menu,
 } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import intl from 'react-intl-universal';
+import { filesColumns } from 'store/graphql/files/models';
+import { getFilesData } from 'store/graphql/files/actions';
 import Api from '../../../../../helpers/api';
 import { TaskResponse } from '../../../../../helpers/search/types';
 import MetadataModal from './metadataModal';
+import ApolloProvider from '../../../../../store/providers/apollo';
 
 import './styles.scss';
 
@@ -17,13 +21,22 @@ const getURL = async (url: string) => {
   return data.payload.data.url;
 };
 
-const FilesTab: React.FC = () => {
+type FilesTabProps = {
+  userToken: string;
+};
+
+const FilesTab: React.FC<FilesTabProps> = ({ userToken }) => {
   const { Patient } = fileInfo;
 
   const dataSource: any[] = [];
   const [isOpen, setIsOpenModal] = useState<boolean>(false);
   const [documentReference, setDocumentReference] = useState<string>('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { loading: loadingData, results: rData } = getFilesData()();
 
+  if (loadingData) {
+    return null;
+  }
   const getFileSize = (size: number) => {
     let newSize = size;
     if (size >= 1000 && size < 10 ** 6) {
@@ -160,56 +173,7 @@ const FilesTab: React.FC = () => {
       >
         <Table
           pagination={false}
-          columns={[
-            {
-              key: 'title',
-              dataIndex: 'title',
-              title: intl.get('screen.patient.details.file.name'),
-            },
-            {
-              key: 'type',
-              dataIndex: 'type',
-              title: intl.get('screen.patient.details.file.type'),
-            },
-            {
-              key: 'format',
-              dataIndex: 'format',
-              title: intl.get('screen.patient.details.file.format'),
-            },
-            {
-              key: 'size',
-              dataIndex: 'size',
-              title: intl.get('screen.patient.details.file.size'),
-            },
-            {
-              key: 'sample',
-              dataIndex: 'sample',
-              title: intl.get('screen.patient.details.file.sample'),
-              sorter: (a, b) => parseInt(a.sample, 10) - parseInt(b.sample, 10),
-            },
-            {
-              key: 'prescription',
-              dataIndex: 'prescription',
-              title: intl.get('screen.patient.details.file.prescription'),
-              sorter: (a, b) => parseInt(a.prescription.props.children, 10) - parseInt(b.prescription.props.children, 10),
-            },
-            {
-              key: 'date',
-              dataIndex: 'date',
-              title: intl.get('screen.patient.details.file.date'),
-              defaultSortOrder: 'descend',
-              sorter: (a, b) => {
-                const dateA: Date = new Date(a.date.replace(/-/g, '/'));
-                const dateB: Date = new Date(b.date.replace(/-/g, '/'));
-                return dateA.getTime() - dateB.getTime();
-              },
-            },
-            {
-              key: 'action',
-              dataIndex: 'action',
-              title: intl.get('screen.patient.details.file.action'),
-            },
-          ]}
+          columns={filesColumns}
           dataSource={dataSource}
           size="small"
         />
