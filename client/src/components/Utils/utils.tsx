@@ -128,7 +128,6 @@ export const getFilterGroup = (
   rangeTypes: string[],
   filterFooter: boolean,
 ): IFilterGroup => {
-  console.log(aggregation)
 
   if (isRangeAgg(aggregation)) {
     return {
