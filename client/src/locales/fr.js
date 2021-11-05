@@ -956,6 +956,7 @@ const fr = {
   'screen.patientvariant.filter.expand.all': 'Tout ouvrir',
   'screen.patientvariant.filter.grouptitle.genepanel': 'Panels de gènes',
   'screen.patientvariant.filter.grouptitle.predictions': 'Prédictions',
+  'screen.patientvariant.filter.grouptitle.rqdmpatient': 'Patients RQDM',
   'screen.patientvariant.filter.grouptitle.publiccohorts': 'Cohortes publiques',
   'screen.variantDetails.clinicalAssociationsTab.clinVar': 'ClinVar',
   'screen.variantDetails.clinicalAssociationsTab.ClinVarID': 'Identifiant clinvar',

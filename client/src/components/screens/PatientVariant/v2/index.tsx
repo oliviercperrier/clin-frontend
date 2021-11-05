@@ -74,13 +74,21 @@ const filterGroups: { [type: string]: FilterGroup[] } = {
   ],
   [FilterTypes.Frequency]: [
     {
+      title: 'screen.patientvariant.filter.grouptitle.rqdmpatient',
+      fields: [
+        'frequencies__internal__af',
+        'frequencies_by_lab__CHUSJ__af',
+        'frequencies_by_lab__CHUS__af',
+        'frequencies_by_lab__CUSM__af',
+      ],
+    },
+    {
       title: 'screen.patientvariant.filter.grouptitle.publiccohorts',
       fields: [
-        //'participant_frequency',
-        //'frequencies__gnomad_genomes_2_1__af',
+        'frequencies__gnomad_genomes_2_1_1__af',
         'frequencies__gnomad_genomes_3_0__af',
         'frequencies__gnomad_genomes_3_1_1__af',
-        //'frequencies__gnomad_exomes_2_1__af',
+        'frequencies__gnomad_exomes_2_1_1__af',
         'frequencies__topmed_bravo__af',
         'frequencies__thousand_genomes__af',
       ],

@@ -753,6 +753,7 @@ const en = {
   'screen.patientvariant.filter.expand.all': 'Expand all',
   'screen.patientvariant.filter.grouptitle.genepanel': 'Gene panels',
   'screen.patientvariant.filter.grouptitle.predictions': 'Predictions',
+  'screen.patientvariant.filter.grouptitle.rqdmpatient': 'RQDM Patients',
   'screen.patientvariant.filter.grouptitle.publiccohorts': 'Public Cohorts',
   'screen.variantDetails.clinicalAssociationsTab.clinVar': 'ClinVar',
   'screen.variantDetails.clinicalAssociationsTab.ClinVarID': 'Clin Var ID',
